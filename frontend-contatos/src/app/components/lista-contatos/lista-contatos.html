@@ -1,0 +1,65 @@
+<div class="container mt-5">
+    <div class="centralizado">
+        <div class="lista-contatos">
+            <div class="header-section">
+                <h2>Lista de Contatos</h2>
+                <p class="subtitle">Gerencie seus contatos de forma simples</p>
+                <button class="btn btn-success btn-custom" [routerLink]="['/cadastro']">
+                    <i class="fa fa-plus"></i> Cadastrar Contato
+                </button>
+            </div>
+            <div class="search-section">
+                <input type="text" class="form-control search-input" [formControl]="searchControl"
+                    placeholder="Buscar por nome ou celular" />
+            </div>
+            <div class="table-container" *ngIf="contatos.length > 0; else semContatos">
+                <table class="table table-custom">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th placeholder="(99) 9999-9999" mask="(00) 0000-0000">Celular</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let contato of contatos">
+                            <td>{{ contato.nome }}</td>
+                            <td>{{ contato.celular  | telefoneFormat }}</td>
+                            <td>{{ contato.telefone | telefoneFormat  }}</td>
+                            <td>{{ contato.email }}</td>
+   
+                            <td>
+                                <div style="display: flex; gap: 8px; align-items: center;">
+                                    <button *ngIf="contato.situacaoAtivo === 'S'" (click)="inativar(contato.id!)"
+                                        title="Inativar Contato">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+
+                                    <button (click)="alternarFavorito(contato)"
+                                        [attr.title]="contato.favorito === 'S' ? 'Desfavoritar' : 'Favoritar'">
+                                        <i class="fa" [ngClass]="contato.favorito === 'S' ? 'fa-heart' : 'fa-heart-o'"
+                                            style="color: red;"></i>
+                                    </button>
+
+                                    <button (click)="inativar(contato.id!)"
+                                        title="Editar Contato">
+                                        <i class="fa fa-pencil " style="color: green"></i>
+                                    </button>
+
+                                </div>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ng-template #semContatos>
+                <div class="alert alert-info text-center">
+                    Nenhum contato encontrado.
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>

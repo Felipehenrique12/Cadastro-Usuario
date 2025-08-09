@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'ngx-toastr/toastr';
+
+#toast-container {
+  top: 20px;
+  right: 0;
+  left: 0;
+  margin: auto;
+  width: fit-content;
+}
+
+.ngx-toastr {
+  border-radius: 6px !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2) !important;
+  padding: 15px 25px !important;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+.toast-success {
+  background-color: #4CAF50 !important;
+  color: #fff !important;
+  text-align: center;
+  
+}
+
+.toast-success span:first-child {
+  margin-right: 8px; 
+  vertical-align: middle; 
+}
+
+.toast-error .toast-message {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  text-align: center;
+}
+
+/* Ícone fixo à esquerda */
+.toast-error .toast-message i,
+.toast-error .toast-message svg,
+.toast-error .toast-message .icon {
+  margin-right: 12px;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.toast-error .toast-message {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+}
+
+.toast-error .toast-message .text-container {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Centraliza o texto */
+  align-items: center;
+  text-align: center;
+}
+.ui-toast-message-error .ui-toast-icon {
+  align-self: center;
+  font-size: 1.2rem;
+}
+
+.toast-warning {
+  background-color: #ff9800 !important;
+  color: #fff !important;
+  text-align: center;
+}
+
+.toast {
+  font-size: 16px !important;
+}

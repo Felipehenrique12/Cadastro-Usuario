@@ -1,0 +1,94 @@
+<div style="text-align: center; margin-bottom: 20px;">
+  <h2>Cadastro de contatos</h2>
+
+  <button class="btn btn-success btn-custom" [routerLink]="['/lista-contatos']">
+    Voltar para Lista
+  </button>
+
+</div>
+
+<form [formGroup]="contatoForm" (ngSubmit)="onSubmit()">
+  <label>
+    Nome:
+    <input type="text" formControlName="nome" />
+    <div class="erro" *ngIf="contatoForm.controls['nome'].errors?.['required'] && contatoForm.controls['nome'].touched">
+      Nome é obrigatório.
+    </div>
+    <div class="erro"
+      *ngIf="contatoForm.controls['nome'].errors?.['maxlength'] && contatoForm.controls['nome'].touched">
+      Nome deve ter no máximo 100 caracteres.
+    </div>
+    <div class="erro" *ngIf="contatoForm.controls['nome'].errors?.['backend']">
+      {{ contatoForm.controls['nome'].errors?.['backend'] }}
+    </div>
+  </label>
+  <br />
+
+  <label>
+    Telefone:
+    <input type="text" formControlName="telefone" maxlength="14" placeholder="(99) 9999-9999" mask="(00) 0000-0000" />
+    <div class="erro"
+      *ngIf="contatoForm.controls['telefone'].errors?.['pattern'] && contatoForm.controls['telefone'].touched">
+      Telefone deve ter o formato (99) 9999-9999.
+    </div>
+    <div class="erro" *ngIf="contatoForm.controls['telefone'].errors?.['backend']">
+      {{ contatoForm.controls['telefone'].errors?.['backend'] }}
+    </div>
+  </label>
+  <br />
+
+  <label>
+    Celular:
+    <input type="text" formControlName="celular" maxlength="15" placeholder="(99) 99999-9999" mask="(00) 00000-0000" />
+    <div class="erro"
+      *ngIf="contatoForm.controls['celular'].errors?.['required'] && contatoForm.controls['celular'].touched">
+      Celular é obrigatório.
+    </div>
+    <div class="erro"
+      *ngIf="contatoForm.controls['celular'].errors?.['pattern'] && contatoForm.controls['celular'].touched">
+      Celular deve ter o formato (99) 99999-9999.
+    </div>
+    <div class="erro"
+      *ngIf="contatoForm.controls['celular'].errors?.['duplicate'] && contatoForm.controls['celular'].touched">
+      Este número de celular já está cadastrado.
+    </div>
+    <div class="erro" *ngIf="contatoForm.controls['celular'].errors?.['backend']">
+      {{ contatoForm.controls['celular'].errors?.['backend'] }}
+    </div>
+  </label>
+  <br />
+
+  <label>
+    Email:
+    <input type="email" formControlName="email" />
+    <div class="erro"
+      *ngIf="contatoForm.controls['email'].errors?.['required'] && contatoForm.controls['email'].touched">
+      Email é obrigatório.
+    </div>
+    <div class="erro" *ngIf="contatoForm.controls['email'].errors?.['email'] && contatoForm.controls['email'].touched">
+      Email inválido.
+    </div>
+    <div class="erro"
+      *ngIf="contatoForm.controls['email'].errors?.['maxlength'] && contatoForm.controls['email'].touched">
+      Email deve ter no máximo 255 caracteres.
+    </div>
+    <div class="erro" *ngIf="contatoForm.controls['email'].errors?.['backend']">
+      {{ contatoForm.controls['email'].errors?.['backend'] }}
+    </div>
+  </label>
+  <br />
+
+  <label><strong>Favorito:</strong></label>
+  <div style="display: flex; gap: 16px; margin-top: 4px;">
+    <label>
+      <input type="radio" formControlName="favorito" value="S" /> Sim
+    </label>
+
+    <label>
+      <input type="radio" formControlName="favorito" value="N" /> Não
+    </label>
+  </div>
+
+
+  <button type="submit" [disabled]="contatoForm.invalid">Cadastrar</button>
+</form>
